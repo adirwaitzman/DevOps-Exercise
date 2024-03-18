@@ -18,6 +18,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Increase jar version
+        working-directory: ./my-app
         run: mvn versions:set -DnewVersion=1.0.${{ vars.VERSION }}
         
 
