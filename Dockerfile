@@ -1,8 +1,8 @@
 # Stage 1: Copy and unzip the artifact
 FROM ubuntu:20.04 AS unzip
-WORKDIR /app
 RUN apt-get update && apt-get install -y unzip
-COPY my-app-artifact my-app.zip
+COPY my-app-artifact /app/my-app.zip
+WORKDIR /app
 RUN unzip my-app.zip -d extracted
 
 # Stage 2: Copy only the jar file and run it under non root user
