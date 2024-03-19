@@ -100,10 +100,5 @@ Because of this part of the POM
         <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
     </annotationProcessors>
 
-Maven's build is failing for some reason.
-Even after removing variables that are equal to NULL in the code,
-Need to come back and investigate
-
-
-The deploy on the production environment needs to be improved,
-Delete the previous version of the app and make sure that the storage does not fill up.
+The Maven build is failing even after removing variables that are set to NULL in the code.
+I'll need to revisit and investigate the issue.

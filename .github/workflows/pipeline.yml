@@ -20,19 +20,6 @@ jobs:
       - name: Increase jar version
         working-directory: ./my-app
         run: mvn versions:set -DnewVersion=1.0.${{ vars.VERSION }}
-
-      - name: Compile and Package
-        working-directory: ./my-app
-        run: mvn clean package
-
-#      - name: Create artifact
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: my-app-artifact
-#          path: my-app/target/my-app-1.0.${{ vars.VERSION }}.jar
-     
-      - name: Create artifact
-        run: cp ./my-app/target/my-app-1.0.${{ vars.VERSION }}.jar ./my-app-artifact.jar
       
       - name: Build Docker image
         run: docker build -t my-app:1.0.${{ vars.VERSION }} .
