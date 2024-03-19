@@ -39,26 +39,22 @@ And to increase the variable by 1 each time
             name: 'VERSION'
             token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
-Running `mvn package` to compile and creates the target directory, including a jar(artifact):
-
-      - name: Compile and Package
-        working-directory: ./my-app
-        run: mvn clean package
-
-Copy the artifact to the same directory of the Dockerfile
-
-      - name: Create artifact
-        run: cp ./my-app/target/my-app-1.0.${{ vars.VERSION }}.jar ./my-app-artifact.jar
-
 The Dockerfile
 
+    # Stage 1: build the artifact
+    FROM maven:3.9.6 AS build
+    COPY my-app ./my-app
+    WORKDIR /my-app
+    RUN mvn package
+
+    # Stage 2: Copy only the jar file and run it under non root user
     FROM openjdk:11-jre-slim
     WORKDIR /app
     RUN adduser --system --group adir
     RUN chown -R adir:adir /app
     USER adir
-    COPY --chown=adir:adir my-app-artifact.jar app.jar
-    CMD ["java", "-jar", "app.jar"]    
+    COPY --from=build --chown=adir:adir /my-app/target/my-app-1.0.*.jar app.jar
+    CMD ["java", "-jar", "app.jar"]   
 
 Build and Tag the Docker image
 
