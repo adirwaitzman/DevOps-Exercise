@@ -57,7 +57,7 @@ jobs:
             docker pull adirwaitzman/my-app:1.0.${{ vars.VERSION }}
             docker rm -f my-app
             docker run --name my-app adirwaitzman/my-app:1.0.${{ vars.VERSION }}
-            '       
+            '
 
   increment_version:
     runs-on: ubuntu-latest

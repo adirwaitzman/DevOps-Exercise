@@ -106,5 +106,4 @@ Need to come back and investigate
 
 
 The deploy on the production environment needs to be improved,
-- Stop the previous app bedore deploy a new one (for this particular app it's fine because it doesn't keep running in the background)
-- Delete the previous version of the app and make sure that the storage does not fill up.
+Delete the previous version of the app and make sure that the storage does not fill up.
