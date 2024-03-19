@@ -28,16 +28,16 @@ To increase the version I used environmental variable
 And to increase the variable by 1 each time
 (depending on the result of the pipeline to make sure that the build did indeed happen as it should and there will be no skipping between versions)
 
-  increment_version:
-    runs-on: ubuntu-latest
-    needs: build
-    if: ${{ success() }}
-    steps:
-    - name: version increanent
-      uses: action-pack/increment@v2
-      with:
-        name: 'VERSION'
-        token: ${{ secrets.REPO_ACCESS_TOKEN }}
+    increment_version:
+        runs-on: ubuntu-latest
+        needs: build
+        if: ${{ success() }}
+        steps:
+        - name: version increanent
+        uses: action-pack/increment@v2
+        with:
+            name: 'VERSION'
+            token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
 Running `mvn package` to compile and creates the target directory, including a jar(artifact):
 
