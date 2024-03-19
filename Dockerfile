@@ -1,5 +1,5 @@
 # Stage 1: build the artifact
-FROM maven:3.9.6 AS build
+FROM maven:3.8.0 AS build
 COPY my-app ./my-app
 WORKDIR /my-app
 RUN mvn package
