@@ -1,6 +1,6 @@
 # Stage 1: build the artifact
 FROM maven:3.9.6 AS build
-COPY my-app .
+COPY my-app ./my-app
 RUN mvn package
 
 # Stage 2: Copy only the jar file and run it under non root user
