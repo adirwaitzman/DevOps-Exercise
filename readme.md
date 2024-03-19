@@ -50,6 +50,16 @@ Copy the artifact to the same directory of the Dockerfile
       - name: Create artifact
         run: cp ./my-app/target/my-app-1.0.${{ vars.VERSION }}.jar ./my-app-artifact.jar
 
+The Dockerfile
+
+    FROM openjdk:11-jre-slim
+    WORKDIR /app
+    RUN adduser --system --group adir
+    RUN chown -R adir:adir /app
+    USER adir
+    COPY --chown=adir:adir my-app-artifact.jar app.jar
+    CMD ["java", "-jar", "app.jar"]    
+
 Build and Tag the Docker image
 
       - name: Build Docker image
@@ -80,3 +90,20 @@ SSH to the production environment (AWS EC2) and deploy the project
             docker pull adirwaitzman/my-app:1.0.${{ vars.VERSION }}
             docker run --name my-app adirwaitzman/my-app:1.0.${{ vars.VERSION }}
             ' 
+
+
+Notes:
+
+Because of this part of the POM
+
+    <annotationProcessors>
+        <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
+    </annotationProcessors>
+
+Maven's build is failing for some reason
+Even after removing variables that are equal to NULL in the code
+Need to come back and investigate
+
+
+The deploy on the production environment needs to be improved,
+Delete the previous version of the app and make sure that the storage does not fill up.
