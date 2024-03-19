@@ -46,9 +46,17 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
   
-      - name: Push Docker image to Docker Hub
+      - name: Push Docker image to Docker Hub (Publish)
         run: docker push adirwaitzman/my-app:1.0.${{ vars.VERSION }}
   
+      - name: run the docker image (deploy)
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${{secrets.USER_NAME}}@$${{secrets.IP_ADDRESS}} '
+
+            docker pull adirwaitzman/my-app:1.0.${{ vars.VERSION }}
+            docker run adirwaitzman/my-app:1.0.${{ vars.VERSION }}
+
         
 
   increment_version:
