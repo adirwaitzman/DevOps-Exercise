@@ -64,7 +64,6 @@ Build and Tag the Docker image
       - name: Tag Docker image
         run: docker tag my-app:1.0.${{ vars.VERSION }} adirwaitzman/my-app:1.0.${{ vars.VERSION }}
 
-
 Log in to Docker Hub and publish the image
 
       - name: Log in to Docker Hub
@@ -86,6 +85,7 @@ SSH to the production environment (AWS EC2) and deploy the project
             docker pull adirwaitzman/my-app:1.0.${{ vars.VERSION }}
             docker run --name my-app adirwaitzman/my-app:1.0.${{ vars.VERSION }}
             ' 
+
 
 
 Notes:
