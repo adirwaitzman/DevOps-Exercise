@@ -55,6 +55,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${{secrets.USER_NAME}}@$${{secrets.IP_ADDRESS}} '
 
             docker pull adirwaitzman/my-app:1.0.${{ vars.VERSION }}
+            docker rm -f my-app
             docker run --name my-app adirwaitzman/my-app:1.0.${{ vars.VERSION }}
             '       
 
