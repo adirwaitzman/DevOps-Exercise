@@ -85,16 +85,3 @@ SSH to the production environment (AWS EC2) and deploy the project
             docker pull adirwaitzman/my-app:1.0.${{ vars.VERSION }}
             docker run --name my-app adirwaitzman/my-app:1.0.${{ vars.VERSION }}
             ' 
-
-
-
-Notes:
-
-Because of this part of the POM
-
-    <annotationProcessors>
-        <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
-    </annotationProcessors>
-
-The Maven build is failing even after removing variables that are set to NULL in the code.
-I'll need to revisit and investigate the issue.
