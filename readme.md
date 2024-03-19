@@ -100,8 +100,8 @@ Because of this part of the POM
         <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
     </annotationProcessors>
 
-Maven's build is failing for some reason
-Even after removing variables that are equal to NULL in the code
+Maven's build is failing for some reason.
+Even after removing variables that are equal to NULL in the code,
 Need to come back and investigate
 
 
