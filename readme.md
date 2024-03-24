@@ -2,7 +2,7 @@
 
 The workflow in this git repo - .github/workflows - pipeline.yml
 
-The pipeline is runing on every push to the master branch
+The pipeline is runing on every push to the master branch.
 
     on:
         push:
